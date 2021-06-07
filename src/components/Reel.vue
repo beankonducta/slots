@@ -1,13 +1,13 @@
 <template>
   <div class="reel">
-    <div class="small-value">
-      {{ valAt(-1) }}
+    <div>
+      <img class="value-small" :src="imgAt(-1)">
     </div>
-    <div class="value">
-      {{ values[valueSlot] }}
+    <div>
+      <img class="value" :src="imgAt(0)">
     </div>
-    <div class="small-value">
-      {{ valAt(1) }}
+    <div>
+      <img class="value-small" :src="imgAt(1)">
     </div>
   </div>
 </template>
@@ -19,16 +19,25 @@ export default {
   data() {
     return {
       values: [
-        // 1, 1, 1, 1, 1, 1, 1.25, 1.25, 1.25, 1.25, 1.5, 1.5, 1.5, 1.75, 1.75,
-        // 1.75, 2, 2, 2, 2.5, 2.5, 3, 3, 3.5, 3.5, 5, 10, 15,
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        1, 1, 1, 1, 1, 1, 
+        2, 2, 2, 2, 2, 2, 
+        3, 3, 3,
+        4, 4, 4,
+        5, 5, 5,
+        6, 6, 6, 
+        10, 10,
+        15, 15, 
+        20, 
+        30,
+        50,
       ],
       valueSlot: 0,
-      speed: 10,
+      speed: 15,
     };
   },
   methods: {
     spin(spins, initial) {
+      // i should weight this so the wheels spin and very slightly different speeds
       setTimeout(() => {
         spins--;
         if (this.valueSlot < this.values.length - 1) this.valueSlot++;
@@ -39,14 +48,17 @@ export default {
     valAt(relativeSlot) {
       if (this.valueSlot + relativeSlot < 0)
         return this.values[
-          this.values.length - 1 + this.valueSlot + relativeSlot
+          this.values.length + this.valueSlot + relativeSlot
         ];
-      if (this.valueSlot + relativeSlot > this.values.length - 1)
+      if (this.valueSlot + relativeSlot > this.values.length)
         return this.values[
           this.valueSlot + relativeSlot - this.values.length - 1
         ];
       return this.values[this.valueSlot + relativeSlot];
     },
+    imgAt(relativeSlot) {
+      return require(`@/assets/fruit/f${this.valAt(relativeSlot)}.png`);
+    }
   },
 };
 </script>
@@ -54,12 +66,16 @@ export default {
 <style scoped>
 .reel {
   width: 100%;
-  text-align: center;
+  height: 80%;
 }
 .value {
   font-size: 2em;
+  height: 100%;
+  width: 100%;
 }
 .value-small {
   font-size: 1em;
+  height: 50%;
+  width: 50%;
 }
 </style>
