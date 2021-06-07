@@ -1,15 +1,13 @@
 <template>
   <div class="reel">
     <div>
-      <img class="value-small" :src="imgAt(-1)" />
+      <img class="value-small" :src="imgAt(-1)" :key="valueSlot" />
     </div>
     <div>
-      <transition name="fade">
-        <img class="value" :src="imgAt(0)" />
-      </transition>
+      <img class="value" :src="imgAt(0)" :key="valueSlot" />
     </div>
     <div>
-      <img class="value-small" :src="imgAt(1)" />
+      <img class="value-small" :src="imgAt(1)" :key="valueSlot" />
     </div>
   </div>
 </template>
@@ -21,8 +19,9 @@ export default {
   data() {
     return {
       values: [
-        1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6,
-        10, 10, 15, 15, 20, 30, 50,
+        1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 1, 1, 1, 1, 1, 1, 4, 4, 4,
+        5, 5, 5, 6, 6, 6, 10, 10, 1, 1, 1, 1, 1, 1, 15, 15, 20, 30, 50, 2, 2, 2,
+        3, 3, 3,
       ],
       valueSlot: 0,
       speed: 15,
@@ -43,9 +42,7 @@ export default {
       if (this.valueSlot + relativeSlot < 0)
         return this.values[this.values.length + this.valueSlot + relativeSlot];
       if (this.valueSlot + relativeSlot > this.values.length)
-        return this.values[
-          this.valueSlot + relativeSlot - this.values.length
-        ];
+        return this.values[this.valueSlot + relativeSlot - this.values.length];
       return this.values[this.valueSlot + relativeSlot];
     },
     imgAt(relativeSlot) {
