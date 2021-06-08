@@ -1,21 +1,17 @@
 <template>
   <div class="reel">
-    <div>
-      <img class="value-small" :src="imgAt(-1)" :key="valueSlot" />
-    </div>
-    <div>
+      <img class="value-small" :src="imgAt(-1)" :key="valueSlot - 1" />
       <img class="value" :src="imgAt(0)" :key="valueSlot" />
-    </div>
-    <div>
-      <img class="value-small" :src="imgAt(1)" :key="valueSlot" />
-    </div>
+      <img class="value-small" :src="imgAt(1)" :key="valueSlot + 1" />
   </div>
 </template>
 
 <script>
 export default {
   name: "Reel",
-  props: {},
+  props: {
+    speed: Number
+  },
   data() {
     return {
       values: [
@@ -24,7 +20,6 @@ export default {
         3, 3, 3,
       ],
       valueSlot: 0,
-      speed: 15,
     };
   },
   methods: {
@@ -34,7 +29,7 @@ export default {
         spins--;
         if (this.valueSlot < this.values.length - 1) this.valueSlot++;
         if (this.valueSlot === this.values.length - 1) this.valueSlot = 0;
-        if (spins > Math.floor(Math.random() * 100)) this.spin(spins, initial);
+        if (spins > Math.floor(Math.random() * 5)) this.spin(spins, initial);
         else this.$emit("spun", this.valuesArray);
       }, (initial - spins) / this.speed);
     },
@@ -51,7 +46,7 @@ export default {
   },
   computed: {
     valuesArray() {
-      return [this.valAt(-1), this.valueSlot, this.valAt(1)];
+      return [this.valAt(-1), this.values[this.valueSlot], this.valAt(1)];
     },
   },
 };
@@ -71,5 +66,11 @@ export default {
   font-size: 1em;
   height: 50%;
   width: 50%;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

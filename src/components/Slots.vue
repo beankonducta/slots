@@ -1,9 +1,9 @@
 <template>
   <div class="slots">
     <div class="reels">
-      <Reel ref="reelOne" @spun="spun(0, $event)" />
-      <Reel ref="reelTwo" @spun="spun(1, $event)" />
-      <Reel ref="reelThree" @spun="spun(2, $event)" />
+      <Reel ref="reelOne" :speed="25" @spun="spun(0, $event)" />
+      <Reel ref="reelTwo" :speed="16" @spun="spun(1, $event)" />
+      <Reel ref="reelThree" :speed="12" @spun="spun(2, $event)" />
     </div>
     <div class="spacer"></div>
     <button @click="roll()" :disabled="active">Roll</button>
@@ -40,9 +40,9 @@ export default {
       this.active = true;
       this.payout = 0;
       this.removeBet();
-      this.$refs.reelOne.spin(500, 500);
-      this.$refs.reelTwo.spin(500, 500);
-      this.$refs.reelThree.spin(500, 500);
+      this.$refs.reelOne.spin(300, 300);
+      this.$refs.reelTwo.spin(300, 300);
+      this.$refs.reelThree.spin(300, 300);
     },
     removeBet() {
       this.balance -= this.bet * this.multiplier;
@@ -55,12 +55,22 @@ export default {
       this.payoutWinnings();
     },
     payoutWinnings() {
+      this.reels.forEach(val => val.spun = false);
       if (
         this.reels[0].values[1] === this.reels[1].values[1] &&
         this.reels[1].values[1] === this.reels[2].values[1]
       ) {
+        console.log("paying out");
+        console.log(this.reels[0].values[1]);
+        console.log(this.reels[1].values[1]);
+        console.log(this.reels[2].values[1]);
         this.payout = this.bet * this.multiplier * this.reels[0].values[1];
         this.balance += this.payout;
+      } else {
+        console.log("NO MATCH!")
+        console.log(this.reels[0].values[1]);
+        console.log(this.reels[1].values[1]);
+        console.log(this.reels[2].values[1]);
       }
     },
   },
