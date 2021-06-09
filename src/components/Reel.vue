@@ -1,8 +1,14 @@
 <template>
   <div class="reel">
+    <div class="value-container">
       <img class="value-small" :src="imgAt(-1)" :key="valueSlot - 1" />
+    </div>
+    <div class="value-container">
       <img class="value" :src="imgAt(0)" :key="valueSlot" />
+    </div>
+    <div class="value-container">
       <img class="value-small" :src="imgAt(1)" :key="valueSlot + 1" />
+    </div>
   </div>
 </template>
 
@@ -10,7 +16,7 @@
 export default {
   name: "Reel",
   props: {
-    speed: Number
+    speed: Number,
   },
   data() {
     return {
@@ -56,19 +62,23 @@ export default {
 .reel {
   width: 100%;
   height: 80%;
+  border: 0.5px solid black;
+}
+.value-container {
+  width: 120px;
+  margin: 0 auto;
 }
 .value {
   font-size: 2em;
-  height: 100%;
-  width: 100%;
+  height: 100px;
 }
 .value-small {
   font-size: 1em;
-  height: 50%;
-  width: 50%;
+  height: 50px;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

@@ -115,6 +115,7 @@ export default {
 .reels {
   width: 25%;
   display: flex;
+  height: 40%;
   flex-direction: row;
   margin: 0 auto;
 }
