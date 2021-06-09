@@ -6,18 +6,19 @@
       <Reel ref="reelThree" :speed="12" @spun="spun(2, $event)" />
     </div>
     <div class="spacer"></div>
-    bal: {{ balance }} pay: {{ payout }}
+    <div class="lcd">bal: {{ balance }}</div>
+    <div class="lcd">payout: {{ payout }}</div>
     <br />
     <button @click="roll()" :disabled="active">Roll</button>
     <br />
     <br />
-    lines: {{ multiplier }}
+    <div class="lcd">lines: {{ multiplier }}</div>
     <br />
     <button @click="multChange(-1)" :disabled="active">-</button>
     <button @click="multChange(1)" :disabled="active">+</button>
     <br />
     <br />
-    bet: {{ bet }}
+    <div class="lcd">bet: {{ bet }}</div>
     <br />
     <button @click="betChange(-10)" :disabled="active">-</button>
     <button @click="betChange(10)" :disabled="active">+</button>
@@ -120,6 +121,6 @@ export default {
   margin: 0 auto;
 }
 .spacer {
-  height: 200px;
+  height: 50px;
 }
 </style>
