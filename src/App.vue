@@ -26,27 +26,33 @@ export default {
 }
 
 button {
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 1.5em;
+  width: 170px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  color: #000;
   text-transform: uppercase;
-  border: 1px solid orange;
-  outline: none;
-  background: white;
-}
-
-button:hover {
+  font-weight: 600;
+  margin-left: 30px;
+  margin-bottom: 30px;
   cursor: pointer;
-  background: #f3f3f3;
+  background-color: transparent;
+  border: 3px solid #00d7c3;
+  border-radius: 0px;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  color: #00d7c3;
 }
 
-button:active {
-  background: #fcf3f3;
+button:hover:not(:disabled) {
+  box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;
+  border: 3px solid #00d7c3;
 }
 
 button:disabled {
+  border: 3px dashed #a5e6f7;
+  color: #a5e6f7;
   cursor: not-allowed;
-  background: white;
 }
 
 .lcd {
