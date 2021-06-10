@@ -33,8 +33,9 @@ button {
   color: #000;
   text-transform: uppercase;
   font-weight: 600;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
   cursor: pointer;
   background-color: transparent;
   border: 3px solid #00d7c3;
@@ -56,24 +57,23 @@ button:disabled {
 }
 
 .lcd {
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 1.5em;
-  text-transform: uppercase;
-  border: 1px solid orange;
-  outline: none;
-  background: white;
-  max-width: 300px;
+  width: 170px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
   margin: 0 auto;
-}
-
-.lcd:hover {
-  cursor: pointer;
-  background: #f3f3f3;
-}
-
-.lcd:active {
-  background: #fcf3f3;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  background-color: #00d7c3;
+  border: 3px solid #00d7c3;
+  border-radius: 0px;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  color: white;
 }
 
 .lcd:disabled {
