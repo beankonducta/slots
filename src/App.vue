@@ -16,8 +16,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "LCDDot Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/font/lcddot.woff2") format("woff2");
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "LCDDot Regular";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -57,6 +64,7 @@ button:disabled {
 }
 
 .lcd {
+  font-family: "LCDDot Regular";
   width: 170px;
   padding-top: 30px;
   padding-bottom: 30px;
@@ -68,16 +76,17 @@ button:disabled {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
-  background-color: #00d7c3;
-  border: 3px solid #00d7c3;
+  background-color: #0a0000;
+  border: 3px solid #0a0000;
   border-radius: 0px;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
-  color: white;
+  color: red;
 }
 
 .lcd:disabled {
   cursor: not-allowed;
-  background: white;
+  background: black;
+  color: #200505;
 }
 </style>
