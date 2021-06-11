@@ -63,6 +63,7 @@ export default {
   width: 100%;
   height: 80%;
   border: 0.5px solid black;
+  background: #685992;
 }
 .value-container {
   width: 120px;
