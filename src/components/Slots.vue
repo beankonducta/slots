@@ -11,26 +11,40 @@
       <Lcd :title="'payout'" :value="payout" :type="'MONEY'" />
     </div>
     <div class="panel">
-      <div class="sub-panel">
-        <Lcd :title="'lines'" :value="lines" />
-        <button class="change-btn" @click="multChange(-1)" :disabled="active || lines === 1">
-          -
-        </button>
-        <button class="change-btn" @click="multChange(1)" :disabled="active || lines === 3">
-          +
-        </button>
-      </div>
-      <div class="sub-panel">
-        <Lcd :title="'bet'" :value="bet" />
-        <button class="change-btn" @click="betChange(-10)" :disabled="active || bet === 10">
-          -
-        </button>
-        <button class="change-btn" @click="betChange(10)" :disabled="active || bet === 100">
-          +
-        </button>
-      </div>
+      <Lcd :title="'lines'" :value="lines" />
+      <button
+        class="change-btn"
+        @click="multChange(-1)"
+        :disabled="active || lines === 1"
+      >
+        -
+      </button>
+      <button
+        class="change-btn"
+        @click="multChange(1)"
+        :disabled="active || lines === 3"
+      >
+        +
+      </button>
+      <Lcd :title="'bet'" :value="bet" />
+      <button
+        class="change-btn"
+        @click="betChange(-10)"
+        :disabled="active || bet === 10"
+      >
+        -
+      </button>
+      <button
+        class="change-btn"
+        @click="betChange(10)"
+        :disabled="active || bet === 100"
+      >
+        +
+      </button>
     </div>
-    <button class="roll-btn" @click="roll()" :disabled="active || !canRoll">Roll</button>
+    <button class="roll-btn" @click="roll()" :disabled="active || !canRoll">
+      Roll
+    </button>
   </div>
 </template>
 
@@ -139,11 +153,6 @@ export default {
   flex-grow: 1;
   align-content: center;
   margin: 0 auto;
-}
-
-.sub-panel {
-  width: 49.5%;
-  padding-right: 1%;
 }
 
 .change-btn {

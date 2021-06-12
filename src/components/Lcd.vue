@@ -34,11 +34,19 @@ export default {
   color: #000;
   text-transform: uppercase;
   font-weight: 600;
-  background-color: #0a0000;
-  border: 3px solid #411f1f;
+  background: rgb(24, 3, 3);
+  background: linear-gradient(
+    0deg,
+    rgba(24, 3, 3, 1) 0%,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(13, 2, 2, 1) 100%
+  );
+  margin: 5px;
+  border: 1px solid #1f1515;
   border-radius: 0px;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
+  
 }
 
 .title {

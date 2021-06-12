@@ -63,7 +63,8 @@ export default {
   width: 100%;
   height: 80%;
   border: 0.5px solid black;
-  background: #685992;
+  background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(28,5,40,1) 50%, rgba(0,0,0,1) 100%);
 }
 .value-container {
   width: 120px;
@@ -83,5 +84,9 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+img {
+  filter: invert(60%) sepia(89%) saturate(5014%) hue-rotate(165deg) brightness(101%) contrast(102%);
 }
 </style>
