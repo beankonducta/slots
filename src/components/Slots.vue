@@ -1,9 +1,24 @@
 <template>
   <div class="slots">
     <div class="reels">
-      <Reel ref="reelOne" :speed="25" @spun="spun(0, $event)" />
-      <Reel ref="reelTwo" :speed="16" @spun="spun(1, $event)" />
-      <Reel ref="reelThree" :speed="12" @spun="spun(2, $event)" />
+      <Reel
+        ref="reelOne"
+        :winner="reels[0].winner"
+        :speed="25"
+        @spun="spun(0, $event)"
+      />
+      <Reel
+        ref="reelTwo"
+        :winner="reels[1].winner"
+        :speed="16"
+        @spun="spun(1, $event)"
+      />
+      <Reel
+        ref="reelThree"
+        :winner="reels[2].winner"
+        :speed="12"
+        @spun="spun(2, $event)"
+      />
     </div>
     <div class="spacer"></div>
     <div class="panel">
@@ -66,15 +81,16 @@ export default {
       lines: 1,
       payout: 0,
       reels: [
-        { spun: false, values: [0, 0, 0] },
-        { spun: false, values: [0, 0, 0] },
-        { spun: false, values: [0, 0, 0] },
+        { spun: false, values: [0, 0, 0], winner: [] },
+        { spun: false, values: [0, 0, 0], winner: [] },
+        { spun: false, values: [0, 0, 0], winner: [] },
       ],
       active: false,
     };
   },
   methods: {
     roll() {
+      this.reels.forEach(val => val.winner = []);
       this.active = true;
       this.payout = 0;
       this.removeBet();
@@ -104,27 +120,41 @@ export default {
     payoutWinnings() {
       this.reels.forEach((val) => (val.spun = false));
       let payout = 0;
-      for (let i = 0; i < this.reels.length - 1; i++)
+      const len = this.reels[0].values.length;
+      for (let i = len - 1; i > len - 3; i--) {
         if (
           this.reels[0].values[i] === this.reels[1].values[i] &&
           this.reels[1].values[i] === this.reels[2].values[i]
         )
-          if (i === 0 || this.lines > 1)
-            payout += this.bet * this.lines * this.reels[0].values[i];
-      if (
-        this.reels[0].values[0] === this.reels[1].values[1] &&
-        this.reels[1].values[1] === this.reels[2].values[2] &&
-        this.lines >= 3
-      )
-        payout += this.bet * this.lines * this.reels[0].values[0];
-      if (
-        this.reels[0].values[2] === this.reels[1].values[1] &&
-        this.reels[1].values[1] === this.reels[2].values[0] &&
-        this.lines >= 3
-      )
-        payout += this.bet * this.lines * this.reels[0].values[2];
-      this.payout = payout;
-      this.balance += this.payout;
+          if (i === len - 2 || this.lines > 1) {
+            payout += this.bet * this.reels[0].values[i];
+            this.reels[0].winner.push(i);
+            this.reels[1].winner.push(i);
+            this.reels[2].winner.push(i);
+          }
+        if (
+          this.reels[0].values[len - 3] === this.reels[1].values[len - 2] &&
+          this.reels[1].values[len - 2] === this.reels[2].values[len - 1] &&
+          this.lines >= 3
+        ) {
+          payout += this.bet * this.reels[0].values[len - 3];
+          this.reels[0].winner.push(len - 3);
+          this.reels[1].winner.push(len - 2);
+          this.reels[2].winner.push(len - 1);
+        }
+        if (
+          this.reels[0].values[len - 1] === this.reels[1].values[len - 2] &&
+          this.reels[1].values[len - 2] === this.reels[2].values[len - 3] &&
+          this.lines >= 3
+        ) {
+          payout += this.bet * this.reels[0].values[len - 1];
+          this.reels[0].winner.push(len - 1);
+          this.reels[1].winner.push(len - 2);
+          this.reels[2].winner.push(len - 3);
+        }
+        this.payout = payout;
+        this.balance += this.payout;
+      }
     },
   },
   computed: {
