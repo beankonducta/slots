@@ -1,7 +1,7 @@
 <template>
   <div class="reel">
     <div class="value-container" v-for="(value, index) in values" :key="index">
-      <img class="value" :class="winClass(index)" :src="img(index)" />
+      <img class="value" v-if="index >= values.length - 3" :class="winClass(index)" :src="img(index)" />
     </div>
   </div>
 </template>
@@ -41,7 +41,8 @@ export default {
       return require(`@/assets/fruit/f${this.values[index]}.png`);
     },
   },
-  computed: {},
+  computed: {
+  },
 };
 </script>
 
